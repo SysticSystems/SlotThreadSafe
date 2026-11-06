@@ -38,8 +38,9 @@ target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_23)
 # EMBED SOURCE TEXT DIRECTLY INTO THE .PCM ARTIFACTS
 # This makes the BMIs totally self-contained and path-independent.
 # ---------------------------------------------------------------
-target_compile_options(${PROJECT_NAME} PUBLIC 
-    "-fmodules-embed-all-files"
+target_compile_options(${PROJECT_NAME} PUBLIC
+        "-Xclang"
+        "-fmodules-embed-all-files"
 )
 
 # ---------------------------------------------------------------
