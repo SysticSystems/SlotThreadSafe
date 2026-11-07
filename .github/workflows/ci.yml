@@ -24,9 +24,10 @@ jobs:
         # 1001:1001 is the default UID for the GitHub Actions runner user
         run: |
           docker run --rm --user root \
+            --entrypoint /bin/bash \
             -v ${{ github.workspace }}:/workspace \
             systic-alpine \
-            /bin/bash -c "chmod +x ./build.sh && ./build.sh Testing && chown -R 1001:1001 /workspace"
+            /bin/bash -c "chmod +x ./synapse.sh && ./synapse.sh run --type=relwithdebinfo && chown -R 1001:1001 /workspace"
 
       - name: Upload Artifacts (Internal CI)
         if: always()
