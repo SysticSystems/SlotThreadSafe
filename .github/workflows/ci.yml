@@ -23,10 +23,7 @@ jobs:
       - name: Run Pipeline (TESTING phase)
         # 1001:1001 is the default UID for the GitHub Actions runner user
         run: |
-          docker run --rm --user root \
-            -v ${{ github.workspace }}:/workspace \
-            systic-alpine \
-            /bin/bash -c "chmod +x ./build.sh && ./build.sh Testing && chown -R 1001:1001 /workspace"
+          docker run --rm -v "$(pwd)":/project systic-alpine ./synapse.sh run --type=relwithdebinfo
 
       - name: Upload Artifacts (Internal CI)
         if: always()
